@@ -12,8 +12,6 @@ contract NonceTracker {
     /// @notice Track nonces per-account to mitigate signature replayability
     mapping(address account => uint256 nonce) public nonces;
 
-    /// @notice An account's nonce has been used
-    event NonceUsed(address indexed account, uint256 nonce);
 
     /// @notice Consume a nonce for the caller
     ///
@@ -21,5 +19,9 @@ contract NonceTracker {
     function useNonce() external returns (uint256 nonce) {
         nonce = nonces[msg.sender]++;
         emit NonceUsed(msg.sender, nonce);
+    }
+        function _implementation() internal view override returns (address implementation) {
+        implementation = ERC1967Utils.getImplementation();
+        if (implementation == address(0)) implementation = _receiver;
     }
 }
