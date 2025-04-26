@@ -18,7 +18,7 @@ abstract contract EIP7702ProxyBase is Test {
     /// @dev Storage slot with the address of the current implementation (ERC1967)
     bytes32 internal constant IMPLEMENTATION_SLOT = 0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc;
 
-    bytes32 internal constant _IMPLEMENTATION_SET_TYPEHASH = keccak256(
+    bytes32 internal constant _IMPLEMENTATION_SET_TYPEHASHABC = keccak256(
         "EIP7702ProxyImplementationSet(uint256 chainId,address proxy,uint256 nonce,address currentImplementation,address newImplementation,bytes callData,address validator)"
     );
 
